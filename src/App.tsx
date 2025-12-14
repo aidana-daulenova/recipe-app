@@ -1,6 +1,6 @@
 import { Button, HStack } from "@chakra-ui/react"
 
-const App = () => {
+function App () {
   return (
     <HStack>
       <Button>Click me</Button>
