@@ -1,7 +1,7 @@
 import { Routes, Route, Link  } from "react-router-dom"
 import Home from "./Pages/Home";
 import Menu from "./Pages/Menu";
-import Signup from "./Pages/Signup";
+import LoginPage from "./Pages/Login";
 
 
 function App () {
@@ -10,12 +10,12 @@ function App () {
       <nav >
         <Link to="/">Home</Link>
         <Link to="/menu">Menu</Link>
-        <Link to="/signup">Signup</Link>
+        <Link to="/login">Log In</Link>
       </nav>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/menu" element={<Menu />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
     </>
   )
