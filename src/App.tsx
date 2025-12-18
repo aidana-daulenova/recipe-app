@@ -8,7 +8,7 @@ function App () {
   return (
     <>
       {/* Навигация */}
-      <nav style={{ display: 'flex', gap: '16px' }}>
+      <nav >
         <Link to="/">Home</Link>
         <Link to="/menu">Menu</Link>
         <Link to="/signup">Signup</Link>
