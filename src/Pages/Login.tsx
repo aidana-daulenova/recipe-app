@@ -26,7 +26,7 @@ function LoginPage() {
       <Button type="submit" alignSelf="flex-start">
         Log In
       </Button>
-    </Fieldset.Root>ç
+    </Fieldset.Root>
     </Center>
   )
 };
