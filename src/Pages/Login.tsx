@@ -1,6 +1,6 @@
 import { Button, Field, Fieldset, Input,  Stack, Center} from "@chakra-ui/react"
 
-function LoginPage() {
+function Login() {
   return (
     <Center minH="100vh">
       <Fieldset.Root size="lg" maxW="md">
@@ -31,4 +31,4 @@ function LoginPage() {
   )
 };
 
-export default LoginPage;
+export default Login;
