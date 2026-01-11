@@ -1,4 +1,4 @@
-import { Button, Field, Fieldset, Input,  Stack, Center,} from "@chakra-ui/react"
+import { Button, Field, Fieldset, Input,  Stack, Center} from "@chakra-ui/react"
 
 function LoginPage() {
   return (
