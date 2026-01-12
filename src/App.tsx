@@ -5,7 +5,7 @@ import Home from "./Pages/Home";
 import LoginPage from "./Pages/Login";
 
 
-function App () {
+function App() {
   return (
     <Routes>
       <Route element={<MainLayout />}>
