@@ -1,23 +1,21 @@
-import { Routes, Route, Link  } from "react-router-dom"
+import { Routes, Route} from "react-router-dom"
+import MainLayout from "./components/layouts/MainLayout";
+import AuthLayout from "./components/layouts/AuthLayout";
 import Home from "./Pages/Home";
-import Menu from "./Pages/Menu";
 import LoginPage from "./Pages/Login";
 
 
 function App () {
   return (
-    <>
-      <nav >
-        <Link to="/">Home</Link>
-        <Link to="/menu">Menu</Link>
-        <Link to="/login">Log In</Link>
-      </nav>
-      <Routes>
+    <Routes>
+      <Route element={<MainLayout />}>
         <Route path="/" element={<Home />} />
-        <Route path="/menu" element={<Menu />} />
+      </Route>
+
+      <Route element={<AuthLayout />}>
         <Route path="/login" element={<LoginPage />} />
-      </Routes>
-    </>
+      </Route>
+    </Routes>
   )
 };
 
