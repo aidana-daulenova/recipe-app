@@ -5,9 +5,9 @@ import logo from "../assets/logo.png"
 function TopBar() {
   return (
     <Flex
-    align="center"
-    justify="space-between"
-    px={10}
+      align="center"
+      justify="space-between"
+      px={10}
     >
 
       <ChakraLink as={RouterLink} to="/" >
