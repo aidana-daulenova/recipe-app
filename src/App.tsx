@@ -2,8 +2,8 @@ import { Routes, Route} from "react-router-dom"
 import MainLayout from "./components/layouts/MainLayout";
 import AuthLayout from "./components/layouts/AuthLayout";
 import Home from "./Pages/Home";
-import LoginPage from "./Pages/Login";
-
+import Login from "./Pages/Login";
+import Signup from "./Pages/Signup"
 
 function App() {
   return (
@@ -13,7 +13,8 @@ function App() {
       </Route>
 
       <Route element={<AuthLayout />}>
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
       </Route>
     </Routes>
   )
