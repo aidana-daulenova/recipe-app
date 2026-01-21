@@ -29,7 +29,7 @@ function Login() {
         </Button>
 
         <ChakraLink as={RouterLink} to="/forgotpassword" variant="plain">
-          Forgotten Password?
+          Forgot Password?
         </ChakraLink>
 
         <Text>
