@@ -28,6 +28,10 @@ function Login() {
           Log In
         </Button>
 
+        <ChakraLink as={RouterLink} to="/forgot-password" variant="plain">
+          Forgot Password?
+        </ChakraLink>
+
         <Text>
           Don&apos;t have an account?{" "}
           <ChakraLink as={RouterLink} to="/signup" variant="plain">
