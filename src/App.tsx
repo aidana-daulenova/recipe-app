@@ -5,6 +5,7 @@ import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup"
 import ForgotPassword from "./Pages/ForgotPassword"
+import ConfirmPassword from "./Pages/ConfirmPassword"
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/confirm-password" element={<ConfirmPassword />}></Route>
       </Route>
     </Routes>
   )
