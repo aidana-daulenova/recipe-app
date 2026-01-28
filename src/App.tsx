@@ -1,9 +1,9 @@
 import { Routes, Route} from "react-router-dom"
 import MainLayout from "./components/layouts/MainLayout";
 import AuthLayout from "./components/layouts/AuthLayout";
-import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup"
+import Home from "./Pages/Home"
 import ForgotPassword from "./Pages/ForgotPassword"
 import ConfirmPassword from "./Pages/ConfirmPassword"
 
