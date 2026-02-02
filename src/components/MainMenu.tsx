@@ -8,7 +8,7 @@ export default function HealthyMenu() {
     <Stack align="flex-start" spacing={3}>
       <ChakraLink 
       href="/recipes" 
-      minW="150px"
+      minW="170px"
       px={2} 
       py={1} 
       borderRadius="md" 
@@ -19,7 +19,7 @@ export default function HealthyMenu() {
       </ChakraLink>
 
       <ChakraLink 
-      minW="150px"
+      minW="170px"
       href="/forum" 
       px={2} 
       py={1} 
@@ -32,7 +32,7 @@ export default function HealthyMenu() {
 
       <ChakraLink 
       href="/about-us" 
-      minW="150px"
+      minW="170px"
       px={2} 
       py={1} 
       borderRadius="md" 

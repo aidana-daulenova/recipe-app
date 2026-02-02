@@ -14,7 +14,7 @@ export default function MainLayout() {
         <Box flex={1} >
           <MainMenu />
         </Box>
-        <Box flex={3} >
+        <Box flex={6} >
           <Outlet />
         </Box>
       </Flex>
