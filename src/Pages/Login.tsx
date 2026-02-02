@@ -1,7 +1,7 @@
 import { Button, Field, Fieldset, Input,  Stack, Center, Text, Link as ChakraLink } from "@chakra-ui/react"
 import {Link as RouterLink} from "react-router-dom"
 
-function Login() {
+export default function Login() {
   return (
     <Center minH="100vh">
       <Fieldset.Root size="lg" maxW="md">
@@ -42,6 +42,4 @@ function Login() {
     </Center>
   )
 };
-
-export default Login;
 

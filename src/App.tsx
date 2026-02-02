@@ -6,12 +6,18 @@ import Signup from "./Pages/Signup"
 import Home from "./Pages/Home"
 import ForgotPassword from "./Pages/ForgotPassword"
 import ConfirmPassword from "./Pages/ConfirmPassword"
+import Forum from "./Pages/Forum"
+import Recipes from "./Pages/Recipes"
+import AboutUs from "./Pages/AboutUs"
 
-function App() {
+export default function App() {
   return (
     <Routes>
       <Route element={<MainLayout />}>
         <Route path="/" element={<Home />} />
+        <Route path="/forum" element={<Forum />} />
+        <Route path="/recipes" element={<Recipes />} />
+        <Route path="/about-us" element={<AboutUs />} />
       </Route>
 
       <Route element={<AuthLayout />}>
@@ -23,5 +29,3 @@ function App() {
     </Routes>
   )
 };
-
-export default App;

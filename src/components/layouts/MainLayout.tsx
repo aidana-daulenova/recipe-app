@@ -3,7 +3,7 @@ import TopBar from "@/components/TopBar"
 import MainMenu from "@/components/MainMenu"
 import { Box, VStack, Flex } from "@chakra-ui/react"
 
-function MainLayout() {
+export default function MainLayout() {
   return (
     <VStack spacing={4} w="full" h="100vh" p={3}>
       <Box w="full" h="100px">
@@ -21,5 +21,3 @@ function MainLayout() {
     </VStack>
   )
 }
-
-export default MainLayout
