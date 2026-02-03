@@ -1,5 +1,5 @@
-import {Button, Field, Fieldset, Input, Stack, Center, Text} from "@chakra-ui/react"
-import {useState} from "react";
+import { Button, Field, Fieldset, Input, Stack, Center, Text } from "@chakra-ui/react"
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function ForgotPassword() {
