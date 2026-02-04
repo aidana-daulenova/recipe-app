@@ -1,6 +1,6 @@
-import {Field, Fieldset, Stack, Center, Text, Button, PinInput, Link as ChakraLink } from "@chakra-ui/react"
+import { Field, Fieldset, Stack, Center, Text, Button, PinInput, Link as ChakraLink } from "@chakra-ui/react"
 import { useState } from "react"
-import {Link as RouterLink} from "react-router-dom"
+import { Link as RouterLink } from "react-router-dom"
 
 export default function ForgotPassword() {
   const [value, setValue] = useState(["", "", "", ""])

@@ -14,7 +14,7 @@ function TopBar() {
         <Image
           src={logo}
           alt="MyRecipes logo"
-          height="75px"
+          height="100px"
           objectFit="contain"
         />
       </ChakraLink>
