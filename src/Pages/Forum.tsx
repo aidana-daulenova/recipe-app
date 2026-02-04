@@ -1,3 +1,3 @@
 export default function Forum() {
-    return <h3>Forum</h3>
+  return <h3>Forum</h3>;
 }

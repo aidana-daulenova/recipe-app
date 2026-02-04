@@ -1,4 +1,12 @@
-import { Button, Field, Fieldset, Input, Stack, Center, Text } from "@chakra-ui/react"
+import {
+  Button,
+  Field,
+  Fieldset,
+  Input,
+  Stack,
+  Center,
+  Text,
+} from "@chakra-ui/react";
 
 export default function Signup() {
   return (
@@ -26,6 +34,6 @@ export default function Signup() {
           Join now
         </Button>
       </Fieldset.Root>
-    </Center> 
-  )
+    </Center>
+  );
 }

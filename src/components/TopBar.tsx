@@ -1,16 +1,11 @@
-import { Flex, Image, Link as ChakraLink } from "@chakra-ui/react"
-import { Link as RouterLink} from "react-router-dom"
-import logo from "../assets/logo.png"
+import { Flex, Image, Link as ChakraLink } from "@chakra-ui/react";
+import { Link as RouterLink } from "react-router-dom";
+import logo from "../assets/logo.png";
 
 function TopBar() {
   return (
-    <Flex
-      align="center"
-      justify="space-between"
-      px={10}
-    >
-
-      <ChakraLink as={RouterLink} to="/" >
+    <Flex align="center" justify="space-between" px={10}>
+      <ChakraLink as={RouterLink} to="/">
         <Image
           src={logo}
           alt="MyRecipes logo"
@@ -28,7 +23,7 @@ function TopBar() {
         Log In
       </ChakraLink>
     </Flex>
-  )
+  );
 }
 
-export default TopBar
+export default TopBar;

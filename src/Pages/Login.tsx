@@ -1,15 +1,24 @@
-import { Button, Field, Fieldset, Input,  Stack, Center, Text, Link as ChakraLink } from "@chakra-ui/react"
-import { Link as RouterLink } from "react-router-dom"
+import {
+  Button,
+  Field,
+  Fieldset,
+  Input,
+  Stack,
+  Center,
+  Text,
+  Link as ChakraLink,
+} from "@chakra-ui/react";
+import { Link as RouterLink } from "react-router-dom";
 
 export default function Login() {
   return (
     <Center minH="100vh">
       <Fieldset.Root size="lg" maxW="md">
         <Stack>
-          <Fieldset.Legend><Text textStyle="4xl">Log in page</Text></Fieldset.Legend>
-          <Fieldset.HelperText>
-            Please enter your details
-          </Fieldset.HelperText>
+          <Fieldset.Legend>
+            <Text textStyle="4xl">Log in page</Text>
+          </Fieldset.Legend>
+          <Fieldset.HelperText>Please enter your details</Fieldset.HelperText>
         </Stack>
 
         <Fieldset.Content>
@@ -40,6 +49,5 @@ export default function Login() {
         </Text>
       </Fieldset.Root>
     </Center>
-  )
-};
-
+  );
+}
