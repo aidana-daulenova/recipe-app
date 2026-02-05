@@ -1,14 +1,14 @@
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route } from "react-router-dom";
 import MainLayout from "./components/layouts/MainLayout";
 import AuthLayout from "./components/layouts/AuthLayout";
 import Login from "./Pages/Login";
-import Signup from "./Pages/Signup"
-import Home from "./Pages/Home"
-import ForgotPassword from "./Pages/ForgotPassword"
-import ConfirmPassword from "./Pages/ConfirmPassword"
-import Forum from "./Pages/Forum"
-import Recipes from "./Pages/Recipes"
-import AboutUs from "./Pages/AboutUs"
+import Signup from "./Pages/Signup";
+import Home from "./Pages/Home";
+import ForgotPassword from "./Pages/ForgotPassword";
+import ConfirmPassword from "./Pages/ConfirmPassword";
+import Forum from "./Pages/Forum";
+import Recipes from "./Pages/Recipes";
+import AboutUs from "./Pages/AboutUs";
 
 export default function App() {
   return (
@@ -27,5 +27,5 @@ export default function App() {
         <Route path="/confirm-password" element={<ConfirmPassword />}></Route>
       </Route>
     </Routes>
-  )
-};
+  );
+}
