@@ -4,12 +4,18 @@ import logo from "../assets/logo.png";
 
 function TopBar() {
   return (
-    <Flex align="center" justify="space-between" px={10}>
-      <ChakraLink as={RouterLink} to="/">
+    <Flex align="center" px={10} mt="5px" position="relative">
+      <ChakraLink
+        as={RouterLink}
+        to="/"
+        position="absolute"
+        left="50%"
+        transform="translateX(-50%)"
+      >
         <Image
           src={logo}
           alt="MyRecipes logo"
-          height="130px"
+          height="40px"
           objectFit="contain"
         />
       </ChakraLink>
@@ -19,6 +25,7 @@ function TopBar() {
         to="/login"
         fontWeight="medium"
         _hover={{ textDecoration: "underline" }}
+        ml="auto"
       >
         Log In
       </ChakraLink>
