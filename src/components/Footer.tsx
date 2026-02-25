@@ -1,4 +1,9 @@
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Flex, HStack, Text } from "@chakra-ui/react";
+import {
+  TiSocialLinkedin,
+  TiSocialInstagram,
+  TiSocialFacebook,
+} from "react-icons/ti";
 
 export default function Footer() {
   return (
@@ -10,8 +15,15 @@ export default function Footer() {
       justify="space-between"
       align="center"
     >
-      <Box flex={3}>Follow us:</Box>
-      <Box flex={1}>© 2025 Aidana Kassym Enterprises Limited</Box>
+      <HStack spacing={4}>
+        <Text>Follow us:</Text>
+
+        <TiSocialLinkedin size="28px" />
+        <TiSocialInstagram size="28px" />
+        <TiSocialFacebook size="28px" />
+      </HStack>
+
+      <Box>© 2025 Aidana Kassym Enterprises Limited</Box>
     </Flex>
   );
 }
