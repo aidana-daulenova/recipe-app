@@ -23,7 +23,7 @@ export default function Footer() {
         <TiSocialFacebook size="28px" />
       </HStack>
 
-      <Box>© 2025 Aidana Kassym Enterprises Limited</Box>
+      <Box>© 2026 Aidana Kassym Enterprises Limited</Box>
     </Flex>
   );
 }
