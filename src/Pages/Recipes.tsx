@@ -81,6 +81,7 @@ export default function Recipes() {
             transform: "translateY(-8px)",
             bg: "white",
           }}
+          cursor="pointer"
         >
           <Image
             src={recipe.imageUrl}
