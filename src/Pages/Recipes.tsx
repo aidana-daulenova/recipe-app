@@ -89,7 +89,7 @@ export default function Recipes() {
             w="100%"
             objectFit="cover"
             objectPosition="center"
-            borderRadius="lg"
+            borderRadius="4xl"
           />
 
           <Text fontSize="xl" textTransform="uppercase" as="b" color="teal.700">
