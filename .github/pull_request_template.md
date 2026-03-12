@@ -4,12 +4,6 @@ Describe the changes, motivation, and context of this PR.
 ## Related Ticket
 Fixes # (issue number) or [Jira Ticket Link]
 
-## Type of Change
-- [ ] Bug fix
-- [ ] New feature
-- [ ] Breaking change
-- [ ] Refactoring/Tech debt
-
 ## How Has This Been Tested?
 Please describe the tests you ran to verify your changes.
 - [ ] Unit tests
