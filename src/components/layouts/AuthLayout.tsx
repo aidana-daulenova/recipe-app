@@ -1,14 +1,13 @@
 import { Outlet } from "react-router-dom";
 import { Flex, Box, Image } from "@chakra-ui/react";
+import auth_image from "../../assets/auth_image.webp";
 
 export default function AuthLayout() {
   return (
     <Flex>
       <Box flexBasis="50%" h="100vh">
         <Image
-          src={
-            "https://pub-aaa82e9851064d22b954c3ebbafc9ae6.r2.dev/legacy/webp/colorful-breakfast-spread-with-scrambled-eggs-and-fruits-o-JfhzQPrkHYvy3JumgvH.webp"
-          }
+          src={auth_image}
           alt={"main photo example"}
           objectFit="cover"
           w="100%"
