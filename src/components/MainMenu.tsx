@@ -39,7 +39,7 @@ export default function MainMenu() {
         bg={location.pathname === "/about-us" ? "teal.100" : "transparent"}
         _hover={{ bg: "gray.200", textDecoration: "none" }}
       >
-        About Us=
+        About Us
       </ChakraLink>
     </Stack>
   );

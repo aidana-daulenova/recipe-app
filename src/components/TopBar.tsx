@@ -1,10 +1,17 @@
-import { Flex, Image, Link as ChakraLink } from "@chakra-ui/react";
+import { Flex, Image, Link as ChakraLink, Separator } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 import logo from "../assets/logo.png";
 
-function TopBar() {
+export default function TopBar() {
   return (
-    <Flex align="center" px={10} mt="5px" position="relative" padding="1%">
+    <Flex
+      align="center"
+      px={10}
+      mt="5px"
+      position="relative"
+      padding="2%"
+      borderBottomWidth="1px"
+    >
       <ChakraLink
         as={RouterLink}
         to="/"
@@ -32,5 +39,3 @@ function TopBar() {
     </Flex>
   );
 }
-
-export default TopBar;
