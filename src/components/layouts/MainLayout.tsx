@@ -6,16 +6,17 @@ import Footer from "@/components/Footer";
 
 export default function MainLayout() {
   return (
-    <VStack minH="100vh" w="full" spacing={0}>
-      <Box w="full" h="100px" px={8}>
+    <VStack h="100vh" w="full" spacing={0}>
+      <Box w="full" h="100px" px={8} flexShrink={0}>
         <TopBar />
       </Box>
 
-      <Flex w="full" flex={1} gap={4} px={8}>
-        <Box flex={1}>
+      <Flex w="full" flex={1} gap={4} px={8} overflow="hidden">
+        <Box flex={1} overflowY="auto">
           <MainMenu />
         </Box>
-        <Box flex={6} px={8}>
+
+        <Box flex={6} px={8} overflowY="auto">
           <Outlet />
         </Box>
       </Flex>
