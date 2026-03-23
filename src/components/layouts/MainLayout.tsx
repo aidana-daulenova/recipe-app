@@ -6,22 +6,29 @@ import Footer from "@/components/Footer";
 
 export default function MainLayout() {
   return (
-    <VStack h="100vh" w="full" spacing={0}>
-      <Box w="full" h="100px" px={8} flexShrink={0}>
+    <Flex direction="column" h="100vh" w="full" overflow="hidden">
+      {/* TopBar */}
+      <Box w="full" h="100px" flexShrink={0}>
         <TopBar />
       </Box>
 
-      <Flex w="full" flex={1} gap={4} px={8} overflow="hidden">
+      {/* Main content */}
+      <Flex flex={1} w="full" gap={4} px={8} overflow="hidden">
+        {/* Sidebar */}
         <Box flex={1} overflowY="auto">
           <MainMenu />
         </Box>
 
+        {/* Main content */}
         <Box flex={6} px={8} overflowY="auto">
           <Outlet />
         </Box>
       </Flex>
 
-      <Footer />
-    </VStack>
+      {/* Footer */}
+      <Box flexShrink={0}>
+        <Footer />
+      </Box>
+    </Flex>
   );
 }

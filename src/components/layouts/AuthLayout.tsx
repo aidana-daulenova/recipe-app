@@ -4,8 +4,8 @@ import auth_image from "../../assets/auth_image.webp";
 
 export default function AuthLayout() {
   return (
-    <Flex>
-      <Box flexBasis="50%" h="100vh">
+    <Flex h="100vh">
+      <Box flexBasis="1">
         <Image
           src={auth_image}
           alt={"main photo example"}
@@ -15,8 +15,8 @@ export default function AuthLayout() {
         />
       </Box>
 
-      <Box flexBasis="50%">
-        <Outlet />;
+      <Box flexBasis="1">
+        <Outlet />
       </Box>
     </Flex>
   );
