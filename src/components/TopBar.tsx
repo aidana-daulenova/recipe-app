@@ -9,7 +9,7 @@ export default function TopBar() {
       position="relative"
       paddingY="2%"
       paddingX="4%"
-      borderBottomWidth="3px"
+      borderBottomWidth="1px"
     >
       <ChakraLink
         as={RouterLink}
