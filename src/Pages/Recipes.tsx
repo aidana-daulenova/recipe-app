@@ -69,7 +69,7 @@ const quickRecipes = [
 
 export default function Recipes() {
   return (
-    <Grid templateColumns="repeat(4, 1fr)" gap="9">
+    <Grid templateColumns="repeat(4, 1fr)" gap="9" pt={3}>
       {quickRecipes.map((recipe) => (
         <Flex
           key={recipe.id}

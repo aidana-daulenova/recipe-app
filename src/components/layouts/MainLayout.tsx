@@ -11,12 +11,12 @@ export default function MainLayout() {
         <TopBar />
       </Box>
 
-      <Flex flex={1} w="full" gap={4} px={8} pt={3} overflow="hidden">
+      <Flex flex={1} w="full" gap={4} px={8} overflow="hidden">
         <Box flex={1} overflowY="auto">
           <MainMenu />
         </Box>
 
-        <Box flex={6} px={10} overflowY="auto">
+        <Box flex={6} px={3} overflowY="auto">
           <Outlet />
         </Box>
       </Flex>
