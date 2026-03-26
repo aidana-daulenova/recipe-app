@@ -69,7 +69,7 @@ const quickRecipes = [
 
 export default function Recipes() {
   return (
-    <Grid templateColumns="repeat(4, 1fr)" gap="10">
+    <Grid templateColumns="repeat(4, 1fr)" gap="9" pt={3}>
       {quickRecipes.map((recipe) => (
         <Flex
           key={recipe.id}
@@ -78,7 +78,7 @@ export default function Recipes() {
           gap="2"
           transition="all 0.3s ease"
           _hover={{
-            transform: "translateY(-8px)",
+            transform: "scale(0.97)",
             bg: "white",
           }}
           cursor="pointer"
