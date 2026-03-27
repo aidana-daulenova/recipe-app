@@ -5,7 +5,7 @@ export default function MainMenu() {
   const location = useLocation();
 
   return (
-    <Stack align="flex-start" spacing={3} pt={3}>
+    <Stack align="flex-start" spacing={3} pt={3} pl={2}>
       <ChakraLink
         href="/recipes"
         minW="170px"
