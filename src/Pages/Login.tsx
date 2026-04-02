@@ -15,7 +15,7 @@ import { z } from "zod";
 
 const schema = z.object({
   email: z.email("Invalid email"),
-  password: z.string().min(6, "At last 6 characters"),
+  password: z.string().min(6, "At least 6 characters"),
 });
 
 export default function Login() {

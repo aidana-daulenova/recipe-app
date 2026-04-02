@@ -43,7 +43,7 @@ export default function ForgotPassword() {
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <Fieldset.Content>
-            <Field.Root>
+            <Field.Root invalid={!!errors.email}>
               <Input type="email" {...register("email")} />
               <Field.ErrorText>{errors.email?.message}</Field.ErrorText>
             </Field.Root>

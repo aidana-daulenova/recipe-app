@@ -7,8 +7,28 @@ import {
   Center,
   Text,
 } from "@chakra-ui/react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+
+const schema = z.object({
+  name: z.string().nonempty("Name is required"),
+  email: z.email("Invalid email"),
+});
 
 export default function Signup() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(schema),
+  });
+
+  const onSubmit = (data) => {
+    console.log("User data:", data);
+  };
+
   return (
     <Center minH="100vh">
       <Fieldset.Root size="lg" maxW="md">
@@ -18,21 +38,25 @@ export default function Signup() {
           </Fieldset.Legend>
         </Stack>
 
-        <Fieldset.Content>
-          <Field.Root>
-            <Field.Label>Name</Field.Label>
-            <Input name="name" />
-          </Field.Root>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Fieldset.Content>
+            <Field.Root invalid={!!errors.name}>
+              <Field.Label>Name</Field.Label>
+              <Input type="name" {...register("name")} />
+              <Field.ErrorText>{errors.name?.message}</Field.ErrorText>
+            </Field.Root>
 
-          <Field.Root>
-            <Field.Label>Email address</Field.Label>
-            <Input name="email" type="email" />
-          </Field.Root>
-        </Fieldset.Content>
+            <Field.Root invalid={!!errors.email}>
+              <Field.Label>Email address</Field.Label>
+              <Input type="email" {...register("email")} />
+              <Field.ErrorText>{errors.email?.message}</Field.ErrorText>
+            </Field.Root>
+          </Fieldset.Content>
 
-        <Button type="submit" alignSelf="flex-start">
-          Join now
-        </Button>
+          <Button type="submit" alignSelf="flex-start" mt={3}>
+            Join now
+          </Button>
+        </form>
       </Fieldset.Root>
     </Center>
   );
