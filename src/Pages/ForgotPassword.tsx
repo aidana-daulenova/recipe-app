@@ -49,7 +49,7 @@ export default function ForgotPassword() {
             </Field.Root>
           </Fieldset.Content>
 
-          <Button alignSelf="flex-start" mt={3}>
+          <Button alignSelf="flex-start" mt={3} type="submit">
             Send
           </Button>
         </form>
