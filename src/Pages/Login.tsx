@@ -56,7 +56,7 @@ export default function Login() {
             </Field.Root>
           </Fieldset.Content>
 
-          <Button type="submit" alignSelf="flex-start" mt={2}>
+          <Button type="submit" alignSelf="flex-start" mt={3}>
             Log In
           </Button>
         </form>
