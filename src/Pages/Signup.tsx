@@ -11,20 +11,35 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
-const schema = z.object({
-  name: z
-    .string()
-    .nonempty("Name is required")
-    .transform((s) => s.trim())
-    .refine((s) => s.length > 0, { message: "Incorrect name" })
-    .refine((val) => !/[!@#$%^&*()]/.test(val), {
-      error: "Name must not contain !@#$%^&*()",
-    }),
-  email: z
-    .string({ error: "Invalid email" })
-    .min(1, { error: "This field is required" })
-    .email({ error: "Invalid email" }),
-});
+const schema = z
+  .object({
+    name: z
+      .string()
+      .nonempty("Name is required")
+      .transform((s) => s.trim())
+      .refine((s) => s.length > 0, { message: "Incorrect name" })
+      .refine((val) => !/[!@#$%^&*()]/.test(val), {
+        error: "Name must not contain !@#$%^&*()",
+      }),
+    lastName: z
+      .string()
+      .nonempty("Last name is required")
+      .transform((s) => s.trim())
+      .refine((s) => s.length > 0, { message: "Incorrect last name" })
+      .refine((val) => !/[!@#$%^&*()]/.test(val), {
+        error: "Name must not contain !@#$%^&*()",
+      }),
+    email: z
+      .string({ error: "Invalid email" })
+      .min(1, { error: "This field is required" })
+      .email({ error: "Invalid email" }),
+    password: z.string().min(6, "At least 6 characters"),
+    confirmPassword: z.string(),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords don't match",
+    path: ["confirmPassword"],
+  });
 
 export default function Signup() {
   const {
@@ -56,10 +71,30 @@ export default function Signup() {
               <Field.ErrorText>{errors.name?.message}</Field.ErrorText>
             </Field.Root>
 
+            <Field.Root invalid={!!errors.lastName}>
+              <Field.Label>Last name</Field.Label>
+              <Input type="lasname" {...register("lastName")} />
+              <Field.ErrorText>{errors.lastName?.message}</Field.ErrorText>
+            </Field.Root>
+
             <Field.Root invalid={!!errors.email}>
               <Field.Label>Email address</Field.Label>
               <Input type="email" {...register("email")} />
               <Field.ErrorText>{errors.email?.message}</Field.ErrorText>
+            </Field.Root>
+
+            <Field.Root invalid={!!errors.password}>
+              <Field.Label>Password</Field.Label>
+              <Input type="password" {...register("password")} />
+              <Field.ErrorText>{errors.password?.message}</Field.ErrorText>
+            </Field.Root>
+
+            <Field.Root invalid={!!errors.confirmPassword}>
+              <Field.Label>Confirm password</Field.Label>
+              <Input type="password" {...register("confirmPassword")} />
+              <Field.ErrorText>
+                {errors.confirmPassword?.message}
+              </Field.ErrorText>
             </Field.Root>
           </Fieldset.Content>
 
