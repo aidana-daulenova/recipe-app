@@ -12,7 +12,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
 const schema = z.object({
-  name: z.string().nonempty("Name is required"),
+  name: z
+    .string()
+    .nonempty("Name is required")
+    .transform((s) => s.trim())
+    .refine((s) => s.length > 0, { message: "Incorrect name" })
+    .refine((val) => !/[!@#$%^&*()]/.test(val), {
+      error: "Name must not contain !@#$%^&*()",
+    }),
   email: z
     .string({ error: "Invalid email" })
     .min(1, { error: "This field is required" })
