@@ -13,7 +13,10 @@ import { z } from "zod";
 
 const schema = z.object({
   name: z.string().nonempty("Name is required"),
-  email: z.email("Invalid email"),
+  email: z
+    .string({ error: "Invalid email" })
+    .min(1, { error: "This field is required" })
+    .email({ error: "Invalid email" }),
 });
 
 export default function Signup() {

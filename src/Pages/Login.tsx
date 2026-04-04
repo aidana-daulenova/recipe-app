@@ -14,7 +14,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
 const schema = z.object({
-  email: z.email("Invalid email"),
+  email: z
+    .string({ error: "Invalid email" })
+    .min(1, { error: "This field is required" })
+    .email({ error: "Invalid email" }),
   password: z.string().min(6, "At least 6 characters"),
 });
 
