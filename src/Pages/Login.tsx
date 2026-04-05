@@ -18,7 +18,12 @@ const schema = z.object({
     .string({ error: "Invalid email" })
     .min(1, { error: "This field is required" })
     .email({ error: "Invalid email" }),
-  password: z.string().min(6, "At least 6 characters"),
+  password: z
+    .string()
+    .refine((val) => !/\s/.test(val), {
+      error: "Password must not contain spaces",
+    })
+    .min(6, "At least 6 characters"),
 });
 
 export default function Login() {

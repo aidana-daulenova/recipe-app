@@ -9,7 +9,7 @@ export default function MainMenu() {
       <ChakraLink
         href="/recipes"
         minW="170px"
-        px={3}
+        px={2}
         py={1}
         pt={1}
         borderRadius="md"
