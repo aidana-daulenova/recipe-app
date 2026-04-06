@@ -11,6 +11,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
+const SPECIAL_CHARS_REGEX = /[!@#$%^&*()]/;
+
 const schema = z
   .object({
     name: z
@@ -18,7 +20,7 @@ const schema = z
       .nonempty("Name is required")
       .transform((s) => s.trim())
       .refine((s) => s.length > 0, { message: "Incorrect name" })
-      .refine((val) => !/[!@#$%^&*()]/.test(val), {
+      .refine((val) => !SPECIAL_CHARS_REGEX.test(val), {
         error: "Name must not contain !@#$%^&*()",
       }),
     lastName: z
@@ -26,14 +28,19 @@ const schema = z
       .nonempty("Last name is required")
       .transform((s) => s.trim())
       .refine((s) => s.length > 0, { message: "Incorrect last name" })
-      .refine((val) => !/[!@#$%^&*()]/.test(val), {
+      .refine((val) => !SPECIAL_CHARS_REGEX.test(val), {
         error: "Name must not contain !@#$%^&*()",
       }),
     email: z
       .string({ error: "Invalid email" })
       .min(1, { error: "This field is required" })
       .email({ error: "Invalid email" }),
-    password: z.string().min(6, "At least 6 characters"),
+    password: z
+      .string()
+      .refine((val) => !/\s/.test(val), {
+        error: "Password must not contain spaces",
+      })
+      .min(6, "At least 6 characters"),
     confirmPassword: z.string(),
   })
   .refine((data) => data.password === data.confirmPassword, {
