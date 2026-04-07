@@ -7,12 +7,30 @@ import {
   Center,
   Text,
 } from "@chakra-ui/react";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+
+const schema = z.object({
+  email: z
+    .string({ error: "Invalid email" })
+    .min(1, { error: "This field is required" })
+    .email({ error: "Invalid email" }),
+});
 
 export default function ForgotPassword() {
-  const [value, setValue] = useState("");
-  const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(schema),
+  });
+
+  const onSubmit = (data) => {
+    console.log("User data:", data);
+  };
+
   return (
     <Center minH="100vh">
       <Fieldset.Root size="lg" maxW="md">
@@ -26,23 +44,18 @@ export default function ForgotPassword() {
           </Fieldset.HelperText>
         </Stack>
 
-        <Fieldset.Content>
-          <Field.Root>
-            <Input
-              name="email"
-              type="email"
-              onChange={(e) => setValue(e.target.value)}
-            />
-          </Field.Root>
-        </Fieldset.Content>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Fieldset.Content>
+            <Field.Root invalid={!!errors.email}>
+              <Input type="email" {...register("email")} />
+              <Field.ErrorText>{errors.email?.message}</Field.ErrorText>
+            </Field.Root>
+          </Fieldset.Content>
 
-        <Button
-          alignSelf="flex-start"
-          disabled={!value}
-          onClick={() => navigate("/confirm-password")}
-        >
-          Send
-        </Button>
+          <Button alignSelf="flex-start" mt={3} type="submit">
+            Send
+          </Button>
+        </form>
       </Fieldset.Root>
     </Center>
   );
