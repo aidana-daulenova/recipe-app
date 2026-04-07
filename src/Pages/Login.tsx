@@ -36,7 +36,7 @@ export default function Login() {
   });
 
   const onSubmit = (data) => {
-    console.log("User data:", data);
+    localStorage.setItem("user", JSON.stringify(data));
   };
 
   return (
