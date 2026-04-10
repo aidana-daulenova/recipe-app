@@ -9,8 +9,14 @@ import ConfirmPassword from "./Pages/ConfirmPassword";
 import Forum from "./Pages/Forum";
 import Recipes from "./Pages/Recipes";
 import AboutUs from "./Pages/AboutUs";
+import { useState } from "react";
 
 export default function App() {
+  const [user, setUser] = useState(() => {
+    const savedUser = localStorage.getItem("user");
+    return savedUser ? JSON.parse(savedUser) : null;
+  });
+
   return (
     <Routes>
       <Route element={<MainLayout />}>
@@ -21,7 +27,7 @@ export default function App() {
       </Route>
 
       <Route element={<AuthLayout />}>
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login setUser={setUser} />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/confirm-password" element={<ConfirmPassword />}></Route>
