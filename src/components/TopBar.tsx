@@ -1,7 +1,6 @@
-import { Flex, Image, Link as ChakraLink } from "@chakra-ui/react";
+import { Text, Flex, Image, Link as ChakraLink } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 import logo from "../assets/logo.png";
-import { FaUser } from "react-icons/fa";
 
 export default function TopBar({ user }) {
   return (
@@ -28,7 +27,7 @@ export default function TopBar({ user }) {
       </ChakraLink>
 
       {user ? (
-        <FaUser size="23px" style={{ marginLeft: "auto" }} />
+        <Text ml="auto"> {user.email} </Text>
       ) : (
         <ChakraLink
           as={RouterLink}
