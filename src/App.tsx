@@ -19,7 +19,7 @@ export default function App() {
 
   return (
     <Routes>
-      <Route element={<MainLayout />}>
+      <Route element={<MainLayout user={user} setUser={setUser} />}>
         <Route path="/" element={<Home />} />
         <Route path="/forum" element={<Forum />} />
         <Route path="/recipes" element={<Recipes />} />

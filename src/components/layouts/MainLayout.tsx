@@ -4,11 +4,11 @@ import MainMenu from "@/components/MainMenu";
 import { Box, Flex } from "@chakra-ui/react";
 import Footer from "@/components/Footer";
 
-export default function MainLayout() {
+export default function MainLayout({ user }) {
   return (
     <Flex direction="column" h="100vh" w="full" overflow="hidden">
       <Box w="full" flexShrink={0}>
-        <TopBar />
+        <TopBar user={user} />
       </Box>
 
       <Flex flex={1} w="full" gap={4} px={8} overflow="hidden">
