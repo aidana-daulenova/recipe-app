@@ -44,7 +44,7 @@ export default function Login({ setUser }) {
     };
     localStorage.setItem("user", JSON.stringify(user));
     setUser(user);
-    navigate("/recipes");
+    navigate("/");
   };
 
   return (
