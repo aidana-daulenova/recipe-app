@@ -1,8 +1,6 @@
 import {
-  Button,
   Menu,
   Portal,
-  Text,
   Flex,
   Image,
   Link as ChakraLink,
@@ -11,7 +9,12 @@ import { Link as RouterLink } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { FaUserCircle } from "react-icons/fa";
 
-export default function TopBar({ user }) {
+export default function TopBar({ user, setUser }) {
+  function logout() {
+    localStorage.removeItem("user");
+    setUser(null);
+  }
+
   return (
     <Flex
       align="center"
@@ -43,10 +46,12 @@ export default function TopBar({ user }) {
           <Portal>
             <Menu.Positioner>
               <Menu.Content>
-                <Menu.Item value="new-txt">Profile</Menu.Item>
-                <Menu.Item value="new-file">My recipes</Menu.Item>
-                <Menu.Item value="new-win">Settings</Menu.Item>
-                <Menu.Item value="open-file"> Log out </Menu.Item>
+                <Menu.Item value="profile">Profile</Menu.Item>
+                <Menu.Item value="my-recipes">My recipes</Menu.Item>
+                <Menu.Item value="settings">Settings</Menu.Item>
+                <Menu.Item value="logout" onClick={logout}>
+                  Logout
+                </Menu.Item>
               </Menu.Content>
             </Menu.Positioner>
           </Portal>
