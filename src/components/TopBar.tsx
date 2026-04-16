@@ -1,8 +1,20 @@
-import { Flex, Image, Link as ChakraLink } from "@chakra-ui/react";
+import {
+  Menu,
+  Portal,
+  Flex,
+  Image,
+  Link as ChakraLink,
+} from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 import logo from "../assets/logo.png";
+import { FaUserCircle } from "react-icons/fa";
 
-export default function TopBar() {
+export default function TopBar({ user, setUser }) {
+  function logout() {
+    localStorage.removeItem("user");
+    setUser(null);
+  }
+
   return (
     <Flex
       align="center"
@@ -26,15 +38,35 @@ export default function TopBar() {
         />
       </ChakraLink>
 
-      <ChakraLink
-        as={RouterLink}
-        to="/login"
-        fontWeight="medium"
-        _hover={{ textDecoration: "underline" }}
-        ml="auto"
-      >
-        Log In
-      </ChakraLink>
+      {user ? (
+        <Menu.Root>
+          <Menu.Trigger asChild ml="auto">
+            <FaUserCircle size="26px" />
+          </Menu.Trigger>
+          <Portal>
+            <Menu.Positioner>
+              <Menu.Content>
+                <Menu.Item value="profile">Profile</Menu.Item>
+                <Menu.Item value="my-recipes">My recipes</Menu.Item>
+                <Menu.Item value="settings">Settings</Menu.Item>
+                <Menu.Item value="logout" onClick={logout}>
+                  Logout
+                </Menu.Item>
+              </Menu.Content>
+            </Menu.Positioner>
+          </Portal>
+        </Menu.Root>
+      ) : (
+        <ChakraLink
+          as={RouterLink}
+          to="/login"
+          fontWeight="medium"
+          _hover={{ textDecoration: "underline" }}
+          ml="auto"
+        >
+          Log In
+        </ChakraLink>
+      )}
     </Flex>
   );
 }

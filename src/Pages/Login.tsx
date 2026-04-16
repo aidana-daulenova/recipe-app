@@ -12,6 +12,7 @@ import { Link as RouterLink } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { useNavigate } from "react-router-dom";
 
 const schema = z.object({
   email: z
@@ -26,7 +27,9 @@ const schema = z.object({
     .min(6, "At least 6 characters"),
 });
 
-export default function Login() {
+export default function Login({ setUser }) {
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -36,7 +39,12 @@ export default function Login() {
   });
 
   const onSubmit = (data) => {
-    console.log("User data:", data);
+    const user = {
+      email: data.email,
+    };
+    localStorage.setItem("user", JSON.stringify(user));
+    setUser(user);
+    navigate("/");
   };
 
   return (
