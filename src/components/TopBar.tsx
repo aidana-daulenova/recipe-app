@@ -8,11 +8,13 @@ import {
 import { Link as RouterLink } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { FaUserCircle } from "react-icons/fa";
+import { useUser } from "../hooks/useUser";
 
-export default function TopBar({ user, setUser }) {
+export default function TopBar() {
+  const { removeUser, user } = useUser();
+
   function logout() {
-    localStorage.removeItem("user");
-    setUser(null);
+    removeUser();
   }
 
   return (
