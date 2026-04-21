@@ -14,6 +14,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useNavigate } from "react-router-dom";
 
+import { useUser } from "../hooks/useUser";
+
 const schema = z.object({
   email: z
     .string({ error: "Invalid email" })
@@ -27,8 +29,9 @@ const schema = z.object({
     .min(6, "At least 6 characters"),
 });
 
-export default function Login({ setUser }) {
+export default function Login() {
   const navigate = useNavigate();
+  const { saveUser } = useUser();
 
   const {
     register,
@@ -42,8 +45,8 @@ export default function Login({ setUser }) {
     const user = {
       email: data.email,
     };
-    localStorage.setItem("user", JSON.stringify(user));
-    setUser(user);
+
+    saveUser(user);
     navigate("/");
   };
 

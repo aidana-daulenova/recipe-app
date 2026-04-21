@@ -9,17 +9,11 @@ import ConfirmPassword from "./Pages/ConfirmPassword";
 import Forum from "./Pages/Forum";
 import Recipes from "./Pages/Recipes";
 import AboutUs from "./Pages/AboutUs";
-import { useState } from "react";
 
 export default function App() {
-  const [user, setUser] = useState(() => {
-    const savedUser = localStorage.getItem("user");
-    return savedUser ? JSON.parse(savedUser) : null;
-  });
-
   return (
     <Routes>
-      <Route element={<MainLayout user={user} setUser={setUser} />}>
+      <Route element={<MainLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/forum" element={<Forum />} />
         <Route path="/recipes" element={<Recipes />} />
@@ -27,7 +21,7 @@ export default function App() {
       </Route>
 
       <Route element={<AuthLayout />}>
-        <Route path="/login" element={<Login setUser={setUser} />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/confirm-password" element={<ConfirmPassword />}></Route>
