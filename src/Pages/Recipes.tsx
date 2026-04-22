@@ -1,9 +1,12 @@
 import { Flex, Grid, Image, Text } from "@chakra-ui/react";
+import { useRecipes } from "@/hooks/useRecipe";
 
 export default function Recipes() {
+  const recipeStore = useRecipes((state) => state.recipes);
+
   return (
     <Grid templateColumns="repeat(4, 1fr)" gap="9" pt={3}>
-      {quickRecipes.map((recipe) => (
+      {recipeStore.map((recipe) => (
         <Flex
           key={recipe.id}
           direction={"column"}
