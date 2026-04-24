@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { quickRecipes } from "/Users/aidanakassym/Desktop/recipe-app/src/mock.ts";
+import { quickRecipes } from "@/mock";
 
 type Recipe = {
   id: number;
@@ -13,6 +13,6 @@ type RecipeStore = {
   recipes: Recipe[];
 };
 
-export const useRecipes = create<RecipeStore>(() => ({
+export const useRecipe = create<RecipeStore>(() => ({
   recipes: quickRecipes,
 }));
