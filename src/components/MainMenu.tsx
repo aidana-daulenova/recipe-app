@@ -7,7 +7,7 @@ export default function MainMenu() {
   return (
     <Stack align="flex-start" spacing={3} pt={3} pl={2}>
       <ChakraLink
-        href="/recipes"
+        href="/"
         minW="170px"
         px={2}
         py={1}
