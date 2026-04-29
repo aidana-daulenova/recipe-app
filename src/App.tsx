@@ -8,6 +8,7 @@ import ConfirmPassword from "./Pages/ConfirmPassword";
 import Forum from "./Pages/Forum";
 import Recipes from "./Pages/Recipes";
 import AboutUs from "./Pages/AboutUs";
+import MyRecipes from "./Pages/MyRecipes";
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
         <Route path="/forum" element={<Forum />} />
         <Route path="/" element={<Recipes />} />
         <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/my-recipes" element={<MyRecipes />} />
       </Route>
 
       <Route element={<AuthLayout />}>
