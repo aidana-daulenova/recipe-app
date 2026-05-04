@@ -1,27 +1,34 @@
-import { Table } from "@chakra-ui/react";
+import { Flex, Text, Spacer, Button, Box, Stack } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 export default function MyRecipes() {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate("/add-new-recipe");
+  };
+
   return (
-    <Table.Root size="sm" interactive>
-      <Table.Header>
-        <Table.Row>
-          <Table.ColumnHeader>Recipe</Table.ColumnHeader>
-        </Table.Row>
-      </Table.Header>
-      <Table.Body>
-        {items.map((item) => (
-          <Table.Row key={item.id}>
-            <Table.Cell>{item.name}</Table.Cell>
-          </Table.Row>
-        ))}
-      </Table.Body>
-    </Table.Root>
+    <Box p="3">
+      <Flex>
+        <Text textStyle="md" fontWeight="semibold">
+          My recipes
+        </Text>
+        <Spacer />
+        <Button
+          colorPalette="teal"
+          variant="surface"
+          size="md"
+          onClick={handleClick}
+        >
+          New recipe
+        </Button>
+      </Flex>
+
+      <Stack>
+        <Text fontWeight="light">Teriyaki pork ribs</Text>
+        <Text fontWeight="light">Folded pancakes</Text>
+        <Text fontWeight="light">Sourdough pancakes</Text>
+      </Stack>
+    </Box>
   );
 }
-
-const items = [
-  { id: 1, name: "Chicken & berry grain bowl" },
-  { id: 2, name: "Porrige" },
-  { id: 3, name: "Tandoori chicken salad" },
-  { id: 4, name: "Firecracker chicken noodle salad" },
-];
