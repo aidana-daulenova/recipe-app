@@ -3,16 +3,21 @@ import { quickRecipes } from "@/mock";
 
 type Recipe = {
   id: number;
-  imageUrl: string;
-  imageAlt: string;
   title: string;
-  time: null | string;
+  mealType?: string;
+  description?: string;
+  imageUrl: string;
 };
 
 type RecipeStore = {
   recipes: Recipe[];
+  addRecipe: (newRecipe: Recipe) => void;
 };
 
-export const useRecipe = create<RecipeStore>(() => ({
+export const useRecipe = create<RecipeStore>((set) => ({
   recipes: quickRecipes,
+  addRecipe: (newRecipe) =>
+    set((state) => ({
+      recipes: [...state.recipes, newRecipe],
+    })),
 }));

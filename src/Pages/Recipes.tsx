@@ -21,7 +21,6 @@ export default function Recipes() {
         >
           <Image
             src={recipe.imageUrl}
-            alt={recipe.imageAlt}
             h="300px"
             w="100%"
             objectFit="cover"
@@ -31,10 +30,6 @@ export default function Recipes() {
 
           <Text fontSize="xl" textTransform="uppercase" as="b" color="teal.700">
             {recipe.title}
-          </Text>
-
-          <Text fontSize="md" color="teal.700">
-            {recipe.time}
           </Text>
         </Flex>
       ))}

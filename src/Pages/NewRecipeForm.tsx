@@ -13,19 +13,37 @@ import {
   FileUpload,
   Float,
   useFileUploadContext,
+  VStack,
 } from "@chakra-ui/react";
 import { LuFileImage, LuX } from "react-icons/lu";
+import { useRecipe } from "@/hooks/useRecipe";
+import { useForm, Controller } from "react-hook-form";
 
 export default function AddNewRecipe() {
   const frameworks = createListCollection({
     items: [
-      { label: "Breakfast", value: "breakfast" },
-      { label: "Lunch", value: "lunch" },
-      { label: "Dinner", value: "dinner" },
-      { label: "Dessert", value: "dessert" },
-      { label: "Baking", value: "baking" },
+      { label: "Breakfast", value: "Breakfast" },
+      { label: "Lunch", value: "Lunch" },
+      { label: "Dinner", value: "Dinner" },
+      { label: "Dessert", value: "Dessert" },
+      { label: "Baking", value: "Baking" },
     ],
   });
+  const { addRecipe } = useRecipe();
+
+  const { register, handleSubmit, control } = useForm();
+
+  const onSubmit = (data) => {
+    const myNewRecipe = {
+      id: data.id,
+      title: data.title,
+      mealType: data.mealType,
+      description: data.description,
+      imageUrl: data.imageUrl,
+    };
+
+    addRecipe(myNewRecipe);
+  };
 
   const FileUploadList = () => {
     const fileUpload = useFileUploadContext();
@@ -54,7 +72,7 @@ export default function AddNewRecipe() {
   };
 
   return (
-    <Flex minH="10vh" pt={3}>
+    <Stack minH="10vh" pt={2}>
       <Fieldset.Root size="lg" maxW="lg">
         <Stack>
           <Fieldset.Legend>
@@ -62,65 +80,78 @@ export default function AddNewRecipe() {
           </Fieldset.Legend>
         </Stack>
 
-        <Field.Root required>
-          <Field.Label>
-            Recipe name
-            <Field.RequiredIndicator />
-          </Field.Label>
-          <Input />
-        </Field.Root>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Stack>
+            <Field.Root required>
+              <Field.Label>
+                Recipe name
+                <Field.RequiredIndicator />
+              </Field.Label>
+              <Input {...register("title")} />
+            </Field.Root>
 
-        <Select.Root multiple collection={frameworks} size="sm" maxW="lg">
-          <Select.HiddenSelect />
-          <Select.Label>Select meal type</Select.Label>
-          <Select.Control>
-            <Select.Trigger>
-              <Select.ValueText placeholder="Meal type" />
-            </Select.Trigger>
-            <Select.IndicatorGroup>
-              <Select.Indicator />
-            </Select.IndicatorGroup>
-          </Select.Control>
-          <Portal>
-            <Select.Positioner>
-              <Select.Content>
-                {frameworks.items.map((framework) => (
-                  <Select.Item item={framework} key={framework.value}>
-                    {framework.label}
-                    <Select.ItemIndicator />
-                  </Select.Item>
-                ))}
-              </Select.Content>
-            </Select.Positioner>
-          </Portal>
-        </Select.Root>
+            <Controller
+              name="mealType"
+              control={control}
+              render={({ field }) => (
+                <Select.Root
+                  size="sm"
+                  maxW="lg"
+                  collection={frameworks}
+                  value={field.value ? [field.value] : []}
+                  onValueChange={(e) => field.onChange(e.value[0])}
+                >
+                  <Select.HiddenSelect />
 
-        <Field.Root>
-          <Field.Label>Ingridients (temporary solutions)</Field.Label>
-          <Input />
-        </Field.Root>
+                  <Select.Control>
+                    <Select.Trigger>
+                      <Select.ValueText placeholder="Meal type" />
+                    </Select.Trigger>
+                  </Select.Control>
 
-        <Field.Root>
-          <Field.Label>Method</Field.Label>
-          <Textarea autoresize />
-        </Field.Root>
+                  <Portal>
+                    <Select.Positioner>
+                      <Select.Content>
+                        {frameworks.items.map((framework) => (
+                          <Select.Item item={framework} key={framework.value}>
+                            {framework.label}
+                          </Select.Item>
+                        ))}
+                      </Select.Content>
+                    </Select.Positioner>
+                  </Portal>
+                </Select.Root>
+              )}
+            />
 
-        <FileUpload.Root accept="image/*" maxFiles={1}>
-          <FileUpload.HiddenInput />
-          <FileUpload.Trigger asChild>
-            <Button variant="outline" size="sm">
-              <LuFileImage /> Upload Images
-            </Button>
-          </FileUpload.Trigger>
-          <FileUploadList />
-        </FileUpload.Root>
+            <Field.Root>
+              <Field.Label>Ingredients (temporary solutions)</Field.Label>
+              <Input />
+            </Field.Root>
 
-        <Field.Root>
-          <Button alignSelf="flex-start" mt={3} type="submit">
-            Save
-          </Button>
-        </Field.Root>
+            <Field.Root>
+              <Field.Label>Method</Field.Label>
+              <Textarea autoresize {...register("description")} />
+            </Field.Root>
+
+            <FileUpload.Root accept="image/*" maxFiles={1}>
+              <FileUpload.HiddenInput {...register("imageUrl")} />
+              <FileUpload.Trigger asChild>
+                <Button variant="outline" size="sm">
+                  <LuFileImage /> Upload Images
+                </Button>
+              </FileUpload.Trigger>
+              <FileUploadList />
+            </FileUpload.Root>
+
+            <Field.Root>
+              <Button alignSelf="flex-start" mt={3} type="submit">
+                Save
+              </Button>
+            </Field.Root>
+          </Stack>
+        </form>
       </Fieldset.Root>
-    </Flex>
+    </Stack>
   );
 }
