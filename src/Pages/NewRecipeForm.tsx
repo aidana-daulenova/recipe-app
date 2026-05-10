@@ -1,5 +1,4 @@
 import {
-  Flex,
   Fieldset,
   Stack,
   Text,
@@ -13,11 +12,11 @@ import {
   FileUpload,
   Float,
   useFileUploadContext,
-  VStack,
 } from "@chakra-ui/react";
 import { LuFileImage, LuX } from "react-icons/lu";
 import { useRecipe } from "@/hooks/useRecipe";
 import { useForm, Controller } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 export default function AddNewRecipe() {
   const frameworks = createListCollection({
@@ -33,6 +32,8 @@ export default function AddNewRecipe() {
 
   const { register, handleSubmit, control } = useForm();
 
+  const navigate = useNavigate();
+
   const onSubmit = (data) => {
     const myNewRecipe = {
       id: data.id,
@@ -43,6 +44,7 @@ export default function AddNewRecipe() {
     };
 
     addRecipe(myNewRecipe);
+    navigate("/my-recipes");
   };
 
   const FileUploadList = () => {
