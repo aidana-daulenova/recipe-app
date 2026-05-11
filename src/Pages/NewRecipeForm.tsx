@@ -36,7 +36,7 @@ export default function AddNewRecipe() {
 
   const onSubmit = (data) => {
     const myNewRecipe = {
-      id: data.id,
+      id: Date.now(),
       title: data.title,
       mealType: data.mealType,
       description: data.description,
