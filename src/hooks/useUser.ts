@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 type User = {
   firstName?: string;
@@ -11,8 +12,13 @@ type UserStore = {
   removeUser: () => void;
 };
 
-export const useUser = create<UserStore>((set) => ({
-  user: undefined,
-  saveUser: (user: User) => set({ user }),
-  removeUser: () => set({ user: null }),
-}));
+export const useUser = create<UserStore>()(
+  persist(
+    (set) => ({
+      user: undefined,
+      saveUser: (user: User) => set({ user }),
+      removeUser: () => set({ user: null }),
+    }),
+    { name: "user-storage" },
+  ),
+);

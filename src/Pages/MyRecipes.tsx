@@ -35,7 +35,7 @@ export default function MyRecipes() {
         </Button>
       </Flex>
 
-      <Stack>
+      <Stack w="60%">
         <Table.Root size="sm" striped>
           <Table.Header>
             <Table.Row>
