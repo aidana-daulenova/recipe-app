@@ -40,7 +40,8 @@ export default function AddNewRecipe() {
       title: data.title,
       mealType: data.mealType,
       description: data.description,
-      imageUrl: data.imageUrl,
+      imageUrl:
+        "https://asset.jamieoliver.com/images/cq7w2e71/production/21ed656d7d793dfbf1b30af1217abf76d0088c42-1064x1280.jpg/163194080?rect=52,0,960,1280&w=1920&h=2560&fm=webp&q=80&fit=crop&auto=format",
     };
 
     addRecipe(myNewRecipe);
