@@ -1,7 +1,7 @@
 import { FileUpload, Float, useFileUploadContext } from "@chakra-ui/react";
 import { LuX } from "react-icons/lu";
 
-export const FileUploadList = () => {
+export function FileUploadList() {
   const fileUpload = useFileUploadContext();
   const files = fileUpload.acceptedFiles;
   if (files.length === 0) return null;
@@ -25,4 +25,4 @@ export const FileUploadList = () => {
       ))}
     </FileUpload.ItemGroup>
   );
-};
+}
