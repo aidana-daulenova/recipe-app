@@ -49,7 +49,11 @@ export default function TopBar() {
             <Menu.Positioner>
               <Menu.Content>
                 <Menu.Item value="profile">Profile</Menu.Item>
-                <Menu.Item value="my-recipes">My recipes</Menu.Item>
+                <Menu.Item asChild value="my-recipes">
+                  <ChakraLink as={RouterLink} to="/my-recipes">
+                    My recipes
+                  </ChakraLink>
+                </Menu.Item>
                 <Menu.Item value="settings">Settings</Menu.Item>
                 <Menu.Item value="logout" onClick={logout}>
                   Logout
