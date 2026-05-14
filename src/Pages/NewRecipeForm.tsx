@@ -10,13 +10,12 @@ import {
   createListCollection,
   Textarea,
   FileUpload,
-  Float,
-  useFileUploadContext,
 } from "@chakra-ui/react";
-import { LuFileImage, LuX } from "react-icons/lu";
+import { LuFileImage } from "react-icons/lu";
 import { useRecipe } from "@/hooks/useRecipe";
 import { useForm, Controller } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { FileUploadList } from "@chakra-ui/react";
 
 export default function AddNewRecipe() {
   const frameworks = createListCollection({
@@ -36,7 +35,7 @@ export default function AddNewRecipe() {
 
   const onSubmit = (data) => {
     const myNewRecipe = {
-      id: Date.now(),
+      id: crypto.randomUUID(),
       title: data.title,
       mealType: data.mealType,
       description: data.description,
@@ -44,34 +43,8 @@ export default function AddNewRecipe() {
         "https://asset.jamieoliver.com/images/cq7w2e71/production/21ed656d7d793dfbf1b30af1217abf76d0088c42-1064x1280.jpg/163194080?rect=52,0,960,1280&w=1920&h=2560&fm=webp&q=80&fit=crop&auto=format",
     };
 
-    addRecipe(myNewRecipe);
-    navigate("/my-recipes");
-  };
-
-  const FileUploadList = () => {
-    const fileUpload = useFileUploadContext();
-    const files = fileUpload.acceptedFiles;
-    if (files.length === 0) return null;
-    return (
-      <FileUpload.ItemGroup>
-        {files.map((file) => (
-          <FileUpload.Item
-            w="auto"
-            boxSize="20"
-            p="2"
-            file={file}
-            key={file.name}
-          >
-            <FileUpload.ItemPreviewImage />
-            <Float placement="top-end">
-              <FileUpload.ItemDeleteTrigger boxSize="4" layerStyle="fill.solid">
-                <LuX />
-              </FileUpload.ItemDeleteTrigger>
-            </Float>
-          </FileUpload.Item>
-        ))}
-      </FileUpload.ItemGroup>
-    );
+    // addRecipe(myNewRecipe);
+    // navigate("/my-recipes");
   };
 
   return (
@@ -102,7 +75,10 @@ export default function AddNewRecipe() {
                   maxW="lg"
                   collection={frameworks}
                   value={field.value ? [field.value] : []}
-                  onValueChange={(e) => field.onChange(e.value[0])}
+                  onValueChange={(details) => {
+                    const [selectedValue] = details.value;
+                    field.onChange(selectedValue);
+                  }}
                 >
                   <Select.HiddenSelect />
 
