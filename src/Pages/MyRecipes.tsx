@@ -4,11 +4,15 @@ import {
   Spacer,
   Button,
   Box,
-  Stack,
-  Table,
+  Grid,
+  Image,
+  Input,
+  InputGroup,
+  Card,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { useRecipe } from "@/hooks/useRecipe";
+import { LuSearch } from "react-icons/lu";
 
 export default function MyRecipes() {
   const navigate = useNavigate();
@@ -20,14 +24,20 @@ export default function MyRecipes() {
 
   return (
     <Box p="3">
-      <Flex>
-        <Text textStyle="md" fontWeight="semibold">
+      <Flex align="center" gap="4">
+        <Text textStyle="2xl" fontWeight="semibold">
           My recipes
         </Text>
+
         <Spacer />
+
+        <InputGroup flex="5" startElement={<LuSearch />} maxW={120}>
+          <Input placeholder="Search..." size="md" />
+        </InputGroup>
+
         <Button
-          colorPalette="teal"
-          variant="surface"
+          colorPalette="black"
+          variant="outline"
           size="md"
           onClick={handleClick}
         >
@@ -35,22 +45,27 @@ export default function MyRecipes() {
         </Button>
       </Flex>
 
-      <Stack w="60%">
-        <Table.Root size="sm" striped>
-          <Table.Header>
-            <Table.Row>
-              <Table.ColumnHeader>Recipe name</Table.ColumnHeader>
-            </Table.Row>
-          </Table.Header>
-          <Table.Body>
-            {recipes.map((item) => (
-              <Table.Row key={item.id}>
-                <Table.Cell>{item.title}</Table.Cell>
-              </Table.Row>
-            ))}
-          </Table.Body>
-        </Table.Root>
-      </Stack>
+      <Grid templateColumns="repeat(5, 1fr)" gap="10" pt={5}>
+        {recipes.map((recipe) => (
+          <Card.Root maxW="sm" overflow="hidden" borderRadius="xl">
+            <Image
+              src={recipe.imageUrl}
+              h="200px"
+              w="100%"
+              objectFit="cover"
+              objectPosition="center"
+            />
+            <Card.Body gap="1" p="3">
+              <Card.Title fontSize="sm" lineHeight="short" noOfLines={2}>
+                {recipe.title}
+              </Card.Title>
+              <Text fontSize="xs" color="gray.500" noOfLines={1}>
+                {recipe.mealType}
+              </Text>
+            </Card.Body>
+          </Card.Root>
+        ))}
+      </Grid>
     </Box>
   );
 }
