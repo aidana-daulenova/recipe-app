@@ -70,7 +70,11 @@ export default function MyRecipes() {
               colorPalette="teal"
               rounded="3xl"
               onClick={() => setSelectedMealType(type)}
+              bg={selectedMealType === type ? "green.200" : "transparent"}
               key={type}
+              _hover={{
+                bg: selectedMealType === type ? "green.200" : "green.100",
+              }}
             >
               {type}
             </Button>
