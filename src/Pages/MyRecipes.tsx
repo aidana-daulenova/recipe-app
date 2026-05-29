@@ -9,10 +9,12 @@ import {
   Input,
   InputGroup,
   Card,
+  ButtonGroup,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { useRecipe } from "@/hooks/useRecipe";
 import { LuSearch } from "react-icons/lu";
+import { useState } from "react";
 
 export default function MyRecipes() {
   const navigate = useNavigate();
@@ -21,6 +23,22 @@ export default function MyRecipes() {
   };
 
   const recipes = useRecipe((state) => state.recipes);
+
+  const mealTypes = [
+    "All",
+    "Breakfast",
+    "Lunch",
+    "Dinner",
+    "Dessert",
+    "Baking",
+  ];
+
+  const [selectedMealType, setSelectedMealType] = useState("All");
+
+  const filteredRecipes =
+    selectedMealType === "All"
+      ? recipes
+      : recipes.filter((recipe) => recipe.mealType === selectedMealType);
 
   return (
     <Box p="3">
@@ -45,9 +63,29 @@ export default function MyRecipes() {
         </Button>
       </Flex>
 
+      <Flex py={2}>
+        <ButtonGroup size="sm" variant="outline" gap={3}>
+          {mealTypes.map((type) => (
+            <Button
+              colorPalette="teal"
+              rounded="3xl"
+              onClick={() => setSelectedMealType(type)}
+              key={type}
+            >
+              {type}
+            </Button>
+          ))}
+        </ButtonGroup>
+      </Flex>
+
       <Grid templateColumns="repeat(5, 1fr)" gap="10" pt={5}>
-        {recipes.map((recipe) => (
-          <Card.Root maxW="sm" overflow="hidden" borderRadius="xl">
+        {filteredRecipes.map((recipe) => (
+          <Card.Root
+            maxW="sm"
+            overflow="hidden"
+            borderRadius="xl"
+            key={recipe.id}
+          >
             <Image
               src={recipe.imageUrl}
               h="200px"

@@ -3,9 +3,9 @@ import { quickRecipes } from "@/mock";
 import { persist } from "zustand/middleware";
 
 type Recipe = {
-  id: string;
+  id: number;
   title: string;
-  mealType?: string;
+  mealType: string;
   description?: string;
   imageUrl: string;
 };
