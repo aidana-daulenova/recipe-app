@@ -16,6 +16,15 @@ import { useRecipe } from "@/hooks/useRecipe";
 import { LuSearch } from "react-icons/lu";
 import { useState } from "react";
 
+enum MealType {
+  All = "All",
+  Breakfast = "Breakfast",
+  Lunch = "Lunch",
+  Dinner = "Dinner",
+  Dessert = "Dessert",
+  Baking = "Baking",
+}
+
 export default function MyRecipes() {
   const navigate = useNavigate();
   const handleClick = () => {
@@ -25,18 +34,18 @@ export default function MyRecipes() {
   const recipes = useRecipe((state) => state.recipes);
 
   const mealTypes = [
-    "All",
-    "Breakfast",
-    "Lunch",
-    "Dinner",
-    "Dessert",
-    "Baking",
+    MealType.All,
+    MealType.Breakfast,
+    MealType.Lunch,
+    MealType.Dinner,
+    MealType.Dessert,
+    MealType.Baking,
   ];
 
-  const [selectedMealType, setSelectedMealType] = useState("All");
+  const [selectedMealType, setSelectedMealType] = useState(MealType.All);
 
   const filteredRecipes =
-    selectedMealType === "All"
+    selectedMealType === MealType.All
       ? recipes
       : recipes.filter((recipe) => recipe.mealType === selectedMealType);
 
