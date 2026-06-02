@@ -12,7 +12,7 @@ import {
   ButtonGroup,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import { useRecipe, MealType, mealTypes } from "@/hooks/useRecipe";
+import { useRecipe, MealType } from "@/hooks/useRecipe";
 import { LuSearch } from "react-icons/lu";
 import { useState } from "react";
 
@@ -30,6 +30,15 @@ export default function MyRecipes() {
     selectedMealType === MealType.All
       ? recipes
       : recipes.filter((recipe) => recipe.mealType === selectedMealType);
+
+  const mealTypes = [
+    MealType.All,
+    MealType.Breakfast,
+    MealType.Lunch,
+    MealType.Dinner,
+    MealType.Dessert,
+    MealType.Baking,
+  ];
 
   return (
     <Box p="3">

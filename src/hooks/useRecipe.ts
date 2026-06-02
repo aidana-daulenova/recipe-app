@@ -13,15 +13,6 @@ export const MealType = {
 
 type MealType = (typeof MealType)[keyof typeof MealType];
 
-export const mealTypes = [
-  MealType.All,
-  MealType.Breakfast,
-  MealType.Lunch,
-  MealType.Dinner,
-  MealType.Dessert,
-  MealType.Baking,
-] as const;
-
 type Recipe = {
   id: number;
   title: string;
