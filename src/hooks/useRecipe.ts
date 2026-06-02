@@ -2,10 +2,30 @@ import { create } from "zustand";
 import { quickRecipes } from "@/mock";
 import { persist } from "zustand/middleware";
 
+export const MealType = {
+  All: "All",
+  Breakfast: "Breakfast",
+  Lunch: "Lunch",
+  Dinner: "Dinner",
+  Dessert: "Dessert",
+  Baking: "Baking",
+} as const;
+
+type MealType = (typeof MealType)[keyof typeof MealType];
+
+export const mealTypes = [
+  MealType.All,
+  MealType.Breakfast,
+  MealType.Lunch,
+  MealType.Dinner,
+  MealType.Dessert,
+  MealType.Baking,
+] as const;
+
 type Recipe = {
   id: number;
   title: string;
-  mealType: string;
+  mealType: MealType | string; // `TODO: remove then
   description?: string;
   imageUrl: string;
 };
@@ -19,11 +39,14 @@ export const useRecipe = create<RecipeStore>()(
   persist(
     (set) => ({
       recipes: quickRecipes,
+      selectedFilter: MealType.All,
+
       addRecipe: (newRecipe) =>
         set((state) => ({
           recipes: [...state.recipes, newRecipe],
         })),
     }),
+
     { name: "recipe-storage" },
   ),
 );

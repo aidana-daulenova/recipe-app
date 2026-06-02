@@ -12,18 +12,9 @@ import {
   ButtonGroup,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import { useRecipe } from "@/hooks/useRecipe";
+import { useRecipe, MealType, mealTypes } from "@/hooks/useRecipe";
 import { LuSearch } from "react-icons/lu";
 import { useState } from "react";
-
-enum MealType {
-  All = "All",
-  Breakfast = "Breakfast",
-  Lunch = "Lunch",
-  Dinner = "Dinner",
-  Dessert = "Dessert",
-  Baking = "Baking",
-}
 
 export default function MyRecipes() {
   const navigate = useNavigate();
@@ -32,15 +23,6 @@ export default function MyRecipes() {
   };
 
   const recipes = useRecipe((state) => state.recipes);
-
-  const mealTypes = [
-    MealType.All,
-    MealType.Breakfast,
-    MealType.Lunch,
-    MealType.Dinner,
-    MealType.Dessert,
-    MealType.Baking,
-  ];
 
   const [selectedMealType, setSelectedMealType] = useState(MealType.All);
 
