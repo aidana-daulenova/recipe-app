@@ -38,6 +38,6 @@ export const useRecipe = create<RecipeStore>()(
         })),
     }),
 
-    { name: "recipe-storage" },
+    { name: "recipes" },
   ),
 );

@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { exampleThreads } from "@/mockThreads";
+import { exampleThreads } from "@/mock";
 import { persist } from "zustand/middleware";
 
 export const ThreadCategory = {
@@ -17,8 +17,8 @@ type Thread = {
   id: number;
   userName: string;
   category: ThreadCategory;
-  titleOfThreads: string;
-  threadDescription: string;
+  title: string;
+  description: string;
   comments: number;
   likes: number;
 };
@@ -38,6 +38,6 @@ export const useThreads = create<ThreadStore>()(
           threads: [...state.threads, newThread],
         })),
     }),
-    { name: "thread-storage" },
+    { name: "threads" },
   ),
 );

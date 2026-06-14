@@ -71,9 +71,9 @@ export default function Forum() {
           </Card.Header>
 
           <CardBody px="4" pt="1" pb="4">
-            <Card.Title>{thread.titleOfThreads}</Card.Title>
+            <Card.Title>{thread.title}</Card.Title>
             <Card.Description>
-              <Text lineClamp={2}> {thread.threadDescription} </Text>
+              <Text lineClamp={2}> {thread.description} </Text>
             </Card.Description>
           </CardBody>
 

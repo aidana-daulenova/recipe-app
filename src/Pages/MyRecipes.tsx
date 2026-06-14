@@ -84,7 +84,12 @@ export default function MyRecipes() {
 
       <Grid templateColumns="repeat(5, 1fr)" gap="10" pt={5}>
         {filteredRecipes.map((recipe) => (
-          <Card.Root maxW="sm" overflow="hidden" borderRadius="xl" h>
+          <Card.Root
+            maxW="sm"
+            overflow="hidden"
+            borderRadius="xl"
+            key={recipe.id}
+          >
             <Image
               src={recipe.imageUrl}
               h="200px"
