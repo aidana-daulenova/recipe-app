@@ -48,7 +48,7 @@ export default function Forum() {
       </Flex>
 
       {threads.map((thread) => (
-        <Card.Root mt="4" maxW="89%" key={thread.id}>
+        <Card.Root mt="4" maxW="89%" key={thread.id} variant="elevated">
           <Card.Header p="3">
             <Flex direction="row" justify="space-between">
               <HStack>
