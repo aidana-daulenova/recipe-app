@@ -15,21 +15,30 @@ import { useNavigate } from "react-router-dom";
 import { useRecipe, MealType } from "@/hooks/useRecipe";
 import { LuSearch } from "react-icons/lu";
 import { useState } from "react";
+import { MdOutlineSearchOff } from "react-icons/md";
 
 export default function MyRecipes() {
   const navigate = useNavigate();
+
+  const recipes = useRecipe((state) => state.recipes);
+
+  const [query, setQuery] = useState("");
+  const [selectedMealType, setSelectedMealType] = useState(MealType.All);
+
   const handleClick = () => {
     navigate("/add-new-recipe");
   };
 
-  const recipes = useRecipe((state) => state.recipes);
+  const filtered = recipes.filter((recipe) => {
+    const matchesSearch = recipe.title
+      .toLowerCase()
+      .includes(query.toLowerCase());
 
-  const [selectedMealType, setSelectedMealType] = useState(MealType.All);
+    const matchesMealType =
+      selectedMealType === MealType.All || recipe.mealType === selectedMealType;
 
-  const filteredRecipes =
-    selectedMealType === MealType.All
-      ? recipes
-      : recipes.filter((recipe) => recipe.mealType === selectedMealType);
+    return matchesSearch && matchesMealType;
+  });
 
   const mealTypes = [
     MealType.All,
@@ -49,8 +58,12 @@ export default function MyRecipes() {
 
         <Spacer />
 
-        <InputGroup flex="5" startElement={<LuSearch />} maxW={120}>
-          <Input placeholder="Search..." size="md" />
+        <InputGroup startElement={<LuSearch />} w="300px">
+          <Input
+            placeholder="Search..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
         </InputGroup>
 
         <Button
@@ -63,15 +76,15 @@ export default function MyRecipes() {
         </Button>
       </Flex>
 
-      <Flex py={2}>
+      <Flex py={3}>
         <ButtonGroup size="sm" variant="outline" gap={3}>
           {mealTypes.map((type) => (
             <Button
+              key={type}
               colorPalette="teal"
               rounded="3xl"
               onClick={() => setSelectedMealType(type)}
               bg={selectedMealType === type ? "green.200" : "transparent"}
-              key={type}
               _hover={{
                 bg: selectedMealType === type ? "green.200" : "green.100",
               }}
@@ -82,32 +95,41 @@ export default function MyRecipes() {
         </ButtonGroup>
       </Flex>
 
-      <Grid templateColumns="repeat(5, 1fr)" gap="10" pt={5}>
-        {filteredRecipes.map((recipe) => (
-          <Card.Root
-            maxW="sm"
-            overflow="hidden"
-            borderRadius="xl"
-            key={recipe.id}
-          >
-            <Image
-              src={recipe.imageUrl}
-              h="200px"
-              w="100%"
-              objectFit="cover"
-              objectPosition="center"
-            />
-            <Card.Body gap="1" p="3">
-              <Card.Title fontSize="sm" lineHeight="short" noOfLines={2}>
-                {recipe.title}
-              </Card.Title>
-              <Text fontSize="xs" color="gray.500" noOfLines={1}>
-                {recipe.mealType}
-              </Text>
-            </Card.Body>
-          </Card.Root>
-        ))}
-      </Grid>
+      {filtered.length === 0 ? (
+        <Flex justify="center" align="center" minH="60vh" gap={3}>
+          <MdOutlineSearchOff size={60} />
+          <Text fontSize="4xl">No recipes found</Text>
+        </Flex>
+      ) : (
+        <Grid templateColumns="repeat(5, 1fr)" gap="10" pt={5}>
+          {filtered.map((recipe) => (
+            <Card.Root
+              key={recipe.id}
+              maxW="sm"
+              overflow="hidden"
+              borderRadius="xl"
+            >
+              <Image
+                src={recipe.imageUrl}
+                h="200px"
+                w="100%"
+                objectFit="cover"
+                objectPosition="center"
+              />
+
+              <Card.Body gap="1" p="3">
+                <Card.Title fontSize="sm" lineHeight="short" noOfLines={2}>
+                  {recipe.title}
+                </Card.Title>
+
+                <Text fontSize="xs" color="gray.500" noOfLines={1}>
+                  {recipe.mealType}
+                </Text>
+              </Card.Body>
+            </Card.Root>
+          ))}
+        </Grid>
+      )}
     </Box>
   );
 }
