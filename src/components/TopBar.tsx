@@ -9,12 +9,12 @@ import { Link as RouterLink } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { FaUserCircle } from "react-icons/fa";
 
-type Props = {
+type TobBarProps = {
   user?: { name: string; email: string } | null;
   onLogout?: () => void;
 };
 
-export default function TopBar({ user, onLogout }: Props) {
+export default function TopBar({ user, onLogout }: TobBarProps) {
   return (
     <Flex
       align="center"

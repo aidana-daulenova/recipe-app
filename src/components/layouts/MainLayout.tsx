@@ -3,15 +3,15 @@ import TopBar from "@/components/TopBar";
 import MainMenu from "@/components/MainMenu";
 import { Box, Flex } from "@chakra-ui/react";
 import Footer from "@/components/Footer";
-import { useUser } from "@/hooks/useUser"; // ← добавить
+import { useUser } from "@/hooks/useUser";
 
 export default function MainLayout() {
-  const { user, removeUser } = useUser(); // ← добавить
+  const { user, removeUser } = useUser();
 
   return (
     <Flex direction="column" h="100vh" w="full" overflow="hidden">
       <Box w="full" flexShrink={0}>
-        <TopBar user={user} onLogout={removeUser} /> {/* ← передать */}
+        <TopBar user={user} onLogout={removeUser} />
       </Box>
 
       <Flex flex={1} w="full" gap={4} px={8} overflow="hidden">
