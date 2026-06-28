@@ -20,6 +20,7 @@ export default function App() {
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/my-recipes" element={<MyRecipes />} />
         <Route path="/add-new-recipe" element={<NewRecipeForm />} />
+        <Route path="/edit-recipe/:id" element={<NewRecipeForm />} />
       </Route>
 
       <Route element={<AuthLayout />}>
