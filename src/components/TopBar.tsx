@@ -8,15 +8,13 @@ import {
 import { Link as RouterLink } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { FaUserCircle } from "react-icons/fa";
-import { useUser } from "../hooks/useUser";
 
-export default function TopBar() {
-  const { removeUser, user } = useUser();
+type TobBarProps = {
+  user?: { name: string; email: string } | null;
+  onLogout?: () => void;
+};
 
-  function logout() {
-    removeUser();
-  }
-
+export default function TopBar({ user, onLogout }: TobBarProps) {
   return (
     <Flex
       align="center"
@@ -55,7 +53,7 @@ export default function TopBar() {
                   </ChakraLink>
                 </Menu.Item>
                 <Menu.Item value="settings">Settings</Menu.Item>
-                <Menu.Item value="logout" onClick={logout}>
+                <Menu.Item value="logout" onClick={onLogout}>
                   Logout
                 </Menu.Item>
               </Menu.Content>
