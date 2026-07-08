@@ -14,8 +14,9 @@ import {
 import { LuFileImage } from "react-icons/lu";
 import { useRecipe } from "@/hooks/useRecipe";
 import { useForm, Controller } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { FileUploadList } from "@chakra-ui/react";
+import { useEffect } from "react";
 
 export default function AddNewRecipe() {
   const frameworks = createListCollection({
@@ -27,23 +28,54 @@ export default function AddNewRecipe() {
       { label: "Baking", value: "Baking" },
     ],
   });
-  const { addRecipe } = useRecipe();
+  const { recipes, addRecipe, updateRecipe } = useRecipe();
+  const { id } = useParams();
+  const isEditMode = Boolean(id);
+  const currentRecipe = recipes.find((r) => String(r.id) === String(id));
 
-  const { register, handleSubmit, control } = useForm();
+  const { register, handleSubmit, control, reset } = useForm({
+    defaultValues: {
+      title: currentRecipe?.title || "",
+      mealType: currentRecipe?.mealType || "",
+      description: currentRecipe?.description || "",
+    },
+  });
+
+  useEffect(() => {
+    if (isEditMode && currentRecipe) {
+      reset({
+        title: currentRecipe.title,
+        mealType: currentRecipe.mealType,
+        description: currentRecipe.description,
+      });
+    }
+  }, [isEditMode, currentRecipe, reset]);
 
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    const myNewRecipe = {
-      id: crypto.randomUUID(),
-      title: data.title,
-      mealType: data.mealType,
-      description: data.description,
-      imageUrl:
-        "https://asset.jamieoliver.com/images/cq7w2e71/production/21ed656d7d793dfbf1b30af1217abf76d0088c42-1064x1280.jpg/163194080?rect=52,0,960,1280&w=1920&h=2560&fm=webp&q=80&fit=crop&auto=format",
-    };
+    if (isEditMode && currentRecipe) {
+      const updatedRecipe = {
+        id: currentRecipe.id,
+        title: data.title,
+        mealType: data.mealType,
+        description: data.description,
+        imageUrl: currentRecipe.imageUrl,
+      };
 
-    addRecipe(myNewRecipe);
+      updateRecipe(updatedRecipe);
+    } else {
+      const myNewRecipe = {
+        id: crypto.randomUUID(),
+        title: data.title,
+        mealType: data.mealType,
+        description: data.description,
+        imageUrl:
+          "https://asset.jamieoliver.com/images/cq7w2e71/production/21ed656d7d793dfbf1b30af1217abf76d0088c42-1064x1280.jpg/163194080?rect=52,0,960,1280&w=1920&h=2560&fm=webp&q=80&fit=crop&auto=format",
+      };
+
+      addRecipe(myNewRecipe);
+    }
     navigate("/my-recipes");
   };
 
