@@ -108,6 +108,7 @@ export default function MyRecipes() {
               maxW="sm"
               overflow="hidden"
               borderRadius="xl"
+              onClick={() => navigate(`/edit-recipe/${recipe.id}`)}
             >
               <Image
                 src={recipe.imageUrl}

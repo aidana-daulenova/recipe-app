@@ -14,9 +14,9 @@ export const MealType = {
 type MealType = (typeof MealType)[keyof typeof MealType];
 
 type Recipe = {
-  id: number;
+  id: string;
   title: string;
-  mealType: MealType | string; // `TODO: remove then
+  mealType: MealType | string;
   description?: string;
   imageUrl: string;
 };
@@ -24,20 +24,29 @@ type Recipe = {
 type RecipeStore = {
   recipes: Recipe[];
   addRecipe: (newRecipe: Recipe) => void;
+  updateRecipe: (updatedRecipe: Recipe) => void;
 };
 
 export const useRecipe = create<RecipeStore>()(
   persist(
     (set) => ({
-      recipes: quickRecipes,
+      recipes: quickRecipes as unknown as Recipe[],
       selectedFilter: MealType.All,
 
       addRecipe: (newRecipe) =>
         set((state) => ({
           recipes: [...state.recipes, newRecipe],
         })),
-    }),
 
-    { name: "recipes" },
+      updateRecipe: (updatedRecipe) =>
+        set((state) => ({
+          recipes: state.recipes.map((recipe) =>
+            recipe.id === updatedRecipe.id ? updatedRecipe : recipe,
+          ),
+        })),
+    }),
+    {
+      name: "recipes",
+    },
   ),
 );
