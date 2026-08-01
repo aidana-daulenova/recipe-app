@@ -29,9 +29,9 @@ export default function AddNewRecipe() {
     ],
   });
   const { recipes, addRecipe, updateRecipe } = useRecipe();
-  const { id } = useParams();
-  const isEditMode = Boolean(id);
-  const currentRecipe = recipes.find((r) => String(r.id) === String(id));
+  const { id: recipeId } = useParams();
+  const isEditMode = Boolean(recipeId);
+  const currentRecipe = recipes.find((r) => String(r.id) === String(recipeId));
 
   const { register, handleSubmit, control, reset } = useForm({
     defaultValues: {

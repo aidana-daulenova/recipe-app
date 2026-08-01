@@ -16,7 +16,7 @@ type MealType = (typeof MealType)[keyof typeof MealType];
 type Recipe = {
   id: string;
   title: string;
-  mealType: MealType | string; // `TODO: remove then
+  mealType: MealType | string;
   description?: string;
   imageUrl: string;
 };
